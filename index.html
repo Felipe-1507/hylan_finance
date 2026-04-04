@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>HYLIAN FINANCE</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 10 L30 50 L70 50 Z M30 50 L10 90 L50 90 Z M70 50 L50 90 L90 90 Z' fill='%23c9f25d'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -886,28 +886,45 @@ window.salvarPerfil = async function() {
     header {
       padding: 10px 14px;
       flex-wrap: nowrap;
-      gap: 8px;
+      gap: 6px;
       position: sticky;
       top: 0;
       z-index: 200;
+      min-height: 56px;
     }
-    .logo { font-size: 1rem; }
-    .logo span.logo-text { display: none; }
+    .logo { font-size: 1rem; flex-shrink: 0; }
 
     /* Esconde nav-tabs do header (vira bottom nav) */
     .nav-tabs { display: none; }
 
     /* Botões do header viram ícones compactos */
     .btn-export, .btn-import { display: none; }
-    .month-nav { gap: 4px; }
-    .month-nav button { width: 28px; height: 28px; font-size: 1rem; }
-    #month-label { font-size: 0.78rem; min-width: 100px; }
 
-    /* Header right compacto */
-    .header-right { gap: 6px; }
+    /* Navegação de mês */
+    .month-nav { gap: 4px; flex-shrink: 0; }
+    .month-nav button { width: 28px; height: 28px; font-size: 1rem; }
+    #month-label { font-size: 0.75rem; min-width: 90px; }
+
+    /* Header right — flex, sem quebra, itens centralizados */
+    .header-right {
+      gap: 4px;
+      flex-wrap: nowrap;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    /* Avatar no header — tamanho fixo, sem encolher */
+    #user-avatar-wrap { flex-shrink: 0; display: flex; align-items: center; }
+    #user-avatar-wrap .avatar,
+    #user-avatar-wrap .avatar-placeholder {
+      width: 30px; height: 30px;
+      font-size: 0.75rem;
+      border-width: 1.5px;
+      flex-shrink: 0;
+    }
 
     /* Menu hamburguer */
-    #hamburger-btn { display: flex; }
+    #hamburger-btn { display: flex; flex-shrink: 0; padding: 6px; }
 
     /* Drawer lateral */
     #mobile-drawer {
@@ -2327,20 +2344,32 @@ function importarJSON(input) {
   reader.onload = async e => {
     try {
       const data = JSON.parse(e.target.result);
-      if (data.mensalidades) { window._mensalidades = data.mensalidades; await window._salvarMensalidadesFirebase(data.mensalidades); }
-      if (data.cartoes) { window._cartoes = data.cartoes; await window._salvarCartoesFirebase(data.cartoes); }
-      if (data.compras) { window._compras = data.compras; await window._salvarComprasFirebase(data.compras); }
-      if (data.metas) { window._metas = data.metas; await window._salvarMetasFirebase(data.metas); }
-      // Importar transações mensais
+
+      // Suporte ao formato ANTIGO (localStorage) e NOVO (Firebase)
+      const cartoes = data.cartoes || data.hylian_cartoes || null;
+      const compras = data.compras || data.hylian_compras || null;
+      const mensalidades = data.mensalidades
+        || (data.fin_mensalidades ? data.fin_mensalidades : null)
+        || null;
+
+      if (mensalidades) { window._mensalidades = mensalidades; await window._salvarMensalidadesFirebase(mensalidades); }
+      if (cartoes)      { window._cartoes = cartoes;           await window._salvarCartoesFirebase(cartoes); }
+      if (compras)      { window._compras = compras;           await window._salvarComprasFirebase(compras); }
+      if (data.metas)   { window._metas = data.metas;          await window._salvarMetasFirebase(data.metas); }
+
+      // Importar transações mensais (chaves fin_YYYY_M)
       for (const [k, v] of Object.entries(data)) {
-        if (k.startsWith('fin_')) {
+        if (k.startsWith('fin_') && k !== 'fin_mensalidades') {
           if (!window._txCache) window._txCache = {};
-          window._txCache[k] = v;
+          window._txCache[k] = Array.isArray(v) ? v : (v.lista || []);
           const parts = k.split('_');
           const year = parseInt(parts[1]); const month = parseInt(parts[2]);
-          await window._salvarTransacoesFirebase(year, month, v);
+          if (!isNaN(year) && !isNaN(month)) {
+            await window._salvarTransacoesFirebase(year, month, window._txCache[k]);
+          }
         }
       }
+
       toastMsg('✓ Dados importados com sucesso!');
       renderAll(); renderizarCartoes(); renderizarCompras(); renderMetas();
     } catch(err) { console.error(err); toastMsg('Arquivo inválido!', 'erro'); }
