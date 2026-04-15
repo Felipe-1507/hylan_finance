@@ -1845,224 +1845,76 @@ input:focus, select:focus, textarea:focus {
   /* ══════════════════════════════════════════════
      MIRAI CARDS — SISTEMA VISUAL PREMIUM
   ══════════════════════════════════════════════ */
-
-  /* Formulário */
-  .add-card-row {
-    display: flex;
-    gap: 12px;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    margin-bottom: 28px;
-  }
-  .add-card-row .form-group { flex: 1; min-width: 180px; }
+  .add-card-row { display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-bottom:28px; }
+  .add-card-row .form-group { flex:1; min-width:180px; }
   .bank-select {
-    width: 100%;
-    padding: 10px 14px;
-    border-radius: 12px;
-    border: 1px solid var(--border-light);
-    background: var(--surface2-light);
-    color: var(--text-light);
-    font-family: inherit;
-    font-size: 0.85rem;
-    cursor: pointer;
-    outline: none;
-    transition: border 0.2s;
+    width:100%; padding:10px 14px; border-radius:12px;
+    border:1px solid var(--border-light); background:var(--surface2-light);
+    color:var(--text-light); font-family:inherit; font-size:.85rem;
+    cursor:pointer; outline:none; transition:border .2s;
   }
-  .bank-select:focus { border-color: #E31A2A; }
+  .bank-select:focus { border-color:#E31A2A; }
   .btn-card-add {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 10px 22px;
-    border-radius: 12px;
-    border: none;
-    background: #E31A2A;
-    color: #fff;
-    font-weight: 700;
-    font-size: 0.85rem;
-    cursor: pointer;
-    font-family: inherit;
-    white-space: nowrap;
-    height: 42px;
-    flex-shrink: 0;
-    transition: filter 0.2s, transform 0.1s;
+    display:flex; align-items:center; gap:6px;
+    padding:10px 22px; border-radius:12px; border:none;
+    background:#E31A2A; color:#fff; font-weight:700; font-size:.85rem;
+    cursor:pointer; font-family:inherit; white-space:nowrap;
+    height:42px; flex-shrink:0; transition:filter .2s, transform .1s;
   }
-  .btn-card-add:hover { filter: brightness(1.12); }
-  .btn-card-add:active { transform: scale(0.97); }
-
-  /* Grid */
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-    gap: 22px;
-  }
-
-  /* Cartão premium */
+  .btn-card-add:hover { filter:brightness(1.12); }
+  .btn-card-add:active { transform:scale(.97); }
+  .cards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:22px; }
   .mirai-card {
-    position: relative;
-    border-radius: 22px;
-    height: 188px;
-    padding: 22px 24px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
-    cursor: default;
-    transition: transform 0.28s cubic-bezier(.22,.68,0,1.2), box-shadow 0.28s ease;
-    isolation: isolate;
+    position:relative; border-radius:22px; height:188px;
+    padding:22px 24px 20px; display:flex; flex-direction:column;
+    justify-content:space-between; overflow:hidden; cursor:default;
+    transition:transform .28s cubic-bezier(.22,.68,0,1.2), box-shadow .28s ease;
+    isolation:isolate;
   }
-  .mirai-card:hover {
-    transform: translateY(-5px) scale(1.01);
-    box-shadow: 0 20px 48px rgba(0,0,0,0.4) !important;
+  .mirai-card:hover { transform:translateY(-5px) scale(1.01); box-shadow:0 20px 48px rgba(0,0,0,.4) !important; }
+  .mc-deco1 {
+    position:absolute; top:-55px; right:-45px; width:200px; height:200px;
+    border-radius:50%; background:rgba(255,255,255,.07); pointer-events:none; z-index:0;
   }
-
-  /* Círculo decorativo superior direito */
-  .mirai-card .c-deco1 {
-    position: absolute;
-    top: -55px; right: -45px;
-    width: 200px; height: 200px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.07);
-    pointer-events: none;
-    z-index: 0;
+  .mc-deco2 {
+    position:absolute; bottom:-60px; left:-30px; width:160px; height:160px;
+    border-radius:50%; background:rgba(255,255,255,.04); pointer-events:none; z-index:0;
   }
-  /* Círculo decorativo inferior esquerdo */
-  .mirai-card .c-deco2 {
-    position: absolute;
-    bottom: -60px; left: -30px;
-    width: 160px; height: 160px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.04);
-    pointer-events: none;
-    z-index: 0;
+  .mc-shine {
+    position:absolute; top:0; left:0; right:0; height:1px;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent); z-index:1;
   }
-  /* Linha de brilho no topo */
-  .mirai-card .c-shine {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    z-index: 1;
+  .mc-top { display:flex; justify-content:space-between; align-items:flex-start; position:relative; z-index:2; }
+  .mc-bank { font-size:1rem; font-weight:800; letter-spacing:.2px; line-height:1.2; }
+  .mc-apelido { font-size:.68rem; opacity:.65; margin-top:3px; letter-spacing:.5px; }
+  .mc-chip {
+    width:34px; height:26px; border-radius:5px;
+    border:1px solid rgba(255,255,255,.2); position:relative; overflow:hidden; flex-shrink:0;
   }
-
-  /* Topo do cartão */
-  .c-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    position: relative;
-    z-index: 2;
+  .mc-chip::before { content:''; position:absolute; inset:0; background:rgba(255,255,255,.1); border-radius:4px; }
+  .mc-chip::after {
+    content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:16px; height:12px; border:1px solid rgba(255,255,255,.2); border-radius:2px;
   }
-  .c-bank-name {
-    font-size: 1rem;
-    font-weight: 800;
-    letter-spacing: 0.2px;
-    line-height: 1.2;
+  .mc-bottom { position:relative; z-index:2; display:flex; justify-content:space-between; align-items:flex-end; }
+  .mc-holder { font-size:.72rem; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; opacity:.9; }
+  .mc-network { font-size:.6rem; letter-spacing:1px; text-transform:uppercase; opacity:.5; margin-top:3px; }
+  .mc-icon { font-size:1.5rem; opacity:.65; line-height:1; user-select:none; }
+  .mc-remove {
+    position:absolute; top:13px; right:13px; width:26px; height:26px; border-radius:50%;
+    border:1px solid rgba(255,255,255,.18); background:rgba(0,0,0,.22);
+    color:rgba(255,255,255,.75); font-size:.72rem; display:flex; align-items:center;
+    justify-content:center; cursor:pointer; transition:all .15s; z-index:3; line-height:1;
   }
-  .c-apelido {
-    font-size: 0.68rem;
-    opacity: 0.65;
-    margin-top: 3px;
-    letter-spacing: 0.5px;
-  }
-
-  /* Chip EMV */
-  .c-chip {
-    width: 34px; height: 26px;
-    border-radius: 5px;
-    border: 1px solid rgba(255,255,255,0.2);
-    position: relative;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
-  .c-chip::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(255,255,255,0.12);
-    border-radius: 4px;
-  }
-  .c-chip::after {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    width: 16px; height: 12px;
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 2px;
-  }
-
-  /* Rodapé do cartão */
-  .c-bottom {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-  .c-holder-wrap {}
-  .c-holder {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 1.8px;
-    text-transform: uppercase;
-    opacity: 0.9;
-  }
-  .c-network {
-    font-size: 0.6rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    opacity: 0.5;
-    margin-top: 3px;
-  }
-
-  /* Logo/ícone da bandeira */
-  .c-brand-icon {
-    font-size: 1.5rem;
-    opacity: 0.65;
-    line-height: 1;
-    user-select: none;
-  }
-
-  /* Botão remover */
-  .c-remove {
-    position: absolute;
-    top: 13px; right: 13px;
-    width: 26px; height: 26px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.18);
-    background: rgba(0,0,0,0.22);
-    color: rgba(255,255,255,0.75);
-    font-size: 0.72rem;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-    transition: all 0.15s;
-    z-index: 3;
-    line-height: 1;
-  }
-  .c-remove:hover {
-    background: rgba(227,26,42,0.7);
-    border-color: transparent;
-    color: #fff;
-  }
-
-  /* Empty state */
-  .cards-empty {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--muted-light);
-    font-size: 0.9rem;
-    line-height: 1.7;
-  }
-  .cards-empty .ce-icon { font-size: 2.5rem; margin-bottom: 12px; display: block; }
-
-  @media (max-width: 768px) {
-    .add-card-row { flex-direction: column; }
-    .add-card-row .form-group { min-width: unset; width: 100%; }
-    .btn-card-add { width: 100%; justify-content: center; }
-    .cards-grid { grid-template-columns: 1fr; }
-    .mirai-card { height: 168px; padding: 18px 20px 16px; }
-    .c-bank-name { font-size: 0.92rem; }
+  .mc-remove:hover { background:rgba(227,26,42,.7); border-color:transparent; color:#fff; }
+  .cards-empty { text-align:center; padding:40px 20px; color:var(--muted-light); font-size:.9rem; line-height:1.7; }
+  .cards-empty .ce-icon { font-size:2.5rem; margin-bottom:12px; display:block; }
+  @media (max-width:768px) {
+    .add-card-row { flex-direction:column; }
+    .add-card-row .form-group { min-width:unset; width:100%; }
+    .btn-card-add { width:100%; justify-content:center; }
+    .cards-grid { grid-template-columns:1fr; }
+    .mirai-card { height:168px; padding:18px 20px 16px; }
   }
 </style>
 </head>
@@ -2366,71 +2218,50 @@ input:focus, select:focus, textarea:focus {
 
   <!-- ABA CARTÕES -->
   <div id="view-cartoes" class="view-section">
-
     <div class="panel">
       <div class="panel-title"><i data-lucide="credit-card" class="w-4 h-4"></i> Meus Cartões</div>
-
       <div class="add-card-row">
-        <div class="form-group" style="flex:2; min-width:220px;">
+        <div class="form-group" style="flex:2;min-width:220px;">
           <label>Banco ou cartão</label>
           <select id="novo-cartao-banco" class="bank-select">
             <option value="">— Selecione uma instituição —</option>
             <optgroup label="Fintechs">
-              <option value="nubank">Nubank</option>
-              <option value="inter">Inter</option>
-              <option value="c6bank">C6 Bank</option>
-              <option value="neon">Neon</option>
-              <option value="picpay">PicPay</option>
-              <option value="pagbank">PagBank</option>
-              <option value="next">Next</option>
-              <option value="willbank">Will Bank</option>
-              <option value="pan">Banco Pan</option>
-              <option value="recargapay">RecargaPay</option>
-              <option value="ame">Ame Digital</option>
-              <option value="stone">Stone</option>
+              <option value="nubank">Nubank</option><option value="inter">Inter</option>
+              <option value="c6bank">C6 Bank</option><option value="neon">Neon</option>
+              <option value="picpay">PicPay</option><option value="pagbank">PagBank</option>
+              <option value="next">Next</option><option value="willbank">Will Bank</option>
+              <option value="pan">Banco Pan</option><option value="recargapay">RecargaPay</option>
+              <option value="ame">Ame Digital</option><option value="stone">Stone</option>
               <option value="infinitepay">InfinitePay</option>
             </optgroup>
             <optgroup label="Bancos tradicionais">
-              <option value="bb">Banco do Brasil</option>
-              <option value="caixa">Caixa Econômica</option>
-              <option value="bradesco">Bradesco</option>
-              <option value="santander">Santander</option>
-              <option value="itau">Itaú</option>
-              <option value="btg">BTG Pactual</option>
-              <option value="xp">XP Investimentos</option>
-              <option value="original">Banco Original</option>
-              <option value="safra">Banco Safra</option>
-              <option value="bv">Banco BV</option>
-              <option value="banrisul">Banrisul</option>
-              <option value="brb">BRB</option>
+              <option value="bb">Banco do Brasil</option><option value="caixa">Caixa Econômica</option>
+              <option value="bradesco">Bradesco</option><option value="santander">Santander</option>
+              <option value="itau">Itaú</option><option value="btg">BTG Pactual</option>
+              <option value="xp">XP Investimentos</option><option value="original">Banco Original</option>
+              <option value="safra">Banco Safra</option><option value="bv">Banco BV</option>
+              <option value="banrisul">Banrisul</option><option value="brb">BRB</option>
             </optgroup>
             <optgroup label="Cooperativas">
-              <option value="sicoob">Sicoob</option>
-              <option value="sicredi">Sicredi</option>
-              <option value="cresol">Cresol</option>
-              <option value="unicred">Unicred</option>
+              <option value="sicoob">Sicoob</option><option value="sicredi">Sicredi</option>
+              <option value="cresol">Cresol</option><option value="unicred">Unicred</option>
             </optgroup>
             <optgroup label="Internacional / Global">
-              <option value="nomad">Nomad</option>
-              <option value="wise">Wise</option>
-              <option value="mercadopago">Mercado Pago</option>
-              <option value="avenue">Avenue</option>
+              <option value="nomad">Nomad</option><option value="wise">Wise</option>
+              <option value="mercadopago">Mercado Pago</option><option value="avenue">Avenue</option>
             </optgroup>
             <optgroup label="Bandeiras">
-              <option value="visa">Visa</option>
-              <option value="mastercard">Mastercard</option>
-              <option value="elo">Elo</option>
-              <option value="amex">American Express</option>
-              <option value="hipercard">Hipercard</option>
-              <option value="diners">Diners Club</option>
+              <option value="visa">Visa</option><option value="mastercard">Mastercard</option>
+              <option value="elo">Elo</option><option value="amex">American Express</option>
+              <option value="hipercard">Hipercard</option><option value="diners">Diners Club</option>
             </optgroup>
             <optgroup label="Outros">
               <option value="outro">Outro banco / cartão</option>
             </optgroup>
           </select>
         </div>
-        <div class="form-group" style="flex:2; min-width:180px;">
-          <label>Apelido <span style="font-weight:400;opacity:0.6;">(opcional)</span></label>
+        <div class="form-group" style="flex:2;min-width:180px;">
+          <label>Apelido <span style="font-weight:400;opacity:.6;">(opcional)</span></label>
           <input type="text" id="novo-cartao-apelido" placeholder="Ex: Nubank Principal, Inter Débito…" maxlength="40">
         </div>
         <button class="btn-card-add" onclick="adicionarCartao()">
@@ -2438,7 +2269,6 @@ input:focus, select:focus, textarea:focus {
           Adicionar
         </button>
       </div>
-
       <div id="cards-container" class="cards-grid"></div>
     </div>
 
@@ -3247,220 +3077,113 @@ function importarJSON(input) {
 document.getElementById('tx-data').value = new Date().toISOString().split('T')[0];
 updateMonthLabel();
 
-// ══════════════════════════════════════════════════════════════
-// MIRAI FINANCE — MÓDULO CARTÕES v2  (seguro, sem dados sensíveis)
-// ══════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════════════
+// MIRAI FINANCE — MÓDULO CARTÕES  (compatível com dados antigos e novos)
+// ══════════════════════════════════════════════════════════════════
 
-// ─── CATÁLOGO VISUAL DE INSTITUIÇÕES ───────────────────────────────────────
-// Cada entrada:  bg (CSS gradient/color), text (cor do texto), network (rede),
-//                icon (emoji decorativo), accent (cor de destaque interna)
+// ── TEMAS VISUAIS ──────────────────────────────────────────────────────────
 const CARD_THEMES = {
-  // ── FINTECHS ──
-  nubank: {
-    bg: 'linear-gradient(135deg, #7B2FBE 0%, #420E83 60%, #2B0A56 100%)',
-    text: '#fff', network: 'Mastercard', icon: '✦', accent: 'rgba(255,255,255,0.12)',
-  },
-  inter: {
-    bg: 'linear-gradient(135deg, #FF6B00 0%, #E05500 55%, #B03E00 100%)',
-    text: '#fff', network: 'Mastercard', icon: '◆', accent: 'rgba(255,255,255,0.1)',
-  },
-  c6bank: {
-    bg: 'linear-gradient(135deg, #2D2D2D 0%, #1A1A1A 50%, #0D0D0D 100%)',
-    text: '#E8D5B0', network: 'Mastercard', icon: '◎', accent: 'rgba(232,213,176,0.1)',
-  },
-  neon: {
-    bg: 'linear-gradient(135deg, #00C4E8 0%, #0080B8 55%, #004E87 100%)',
-    text: '#fff', network: 'Visa', icon: '⬡', accent: 'rgba(255,255,255,0.12)',
-  },
-  picpay: {
-    bg: 'linear-gradient(135deg, #11C76F 0%, #0A9A54 55%, #076B3A 100%)',
-    text: '#fff', network: 'Visa', icon: '◉', accent: 'rgba(255,255,255,0.1)',
-  },
-  pagbank: {
-    bg: 'linear-gradient(135deg, #04A54A 0%, #027A36 55%, #015225 100%)',
-    text: '#fff', network: 'Mastercard', icon: '◈', accent: 'rgba(255,255,255,0.09)',
-  },
-  next: {
-    bg: 'linear-gradient(135deg, #00FF7F 0%, #00CC60 40%, #009944 100%)',
-    text: '#003820', network: 'Visa', icon: '▶', accent: 'rgba(0,56,32,0.12)',
-  },
-  willbank: {
-    bg: 'linear-gradient(135deg, #FFD600 0%, #F0C000 45%, #C89800 100%)',
-    text: '#1A1200', network: 'Mastercard', icon: '◇', accent: 'rgba(26,18,0,0.1)',
-  },
-  pan: {
-    bg: 'linear-gradient(135deg, #004FAA 0%, #003480 55%, #001E55 100%)',
-    text: '#fff', network: 'Mastercard', icon: '◫', accent: 'rgba(255,255,255,0.1)',
-  },
-  recargapay: {
-    bg: 'linear-gradient(135deg, #7B2D8B 0%, #551E63 55%, #33103C 100%)',
-    text: '#fff', network: 'Visa', icon: '⟁', accent: 'rgba(255,255,255,0.1)',
-  },
-  ame: {
-    bg: 'linear-gradient(135deg, #E50019 0%, #B50012 55%, #7D000C 100%)',
-    text: '#fff', network: 'Visa', icon: '◎', accent: 'rgba(255,255,255,0.1)',
-  },
-  stone: {
-    bg: 'linear-gradient(135deg, #00B978 0%, #009060 50%, #006844 100%)',
-    text: '#fff', network: 'Mastercard', icon: '◆', accent: 'rgba(255,255,255,0.1)',
-  },
-  infinitepay: {
-    bg: 'linear-gradient(135deg, #FF5200 0%, #D43E00 50%, #9E2D00 100%)',
-    text: '#fff', network: 'Mastercard', icon: '∞', accent: 'rgba(255,255,255,0.1)',
-  },
-
-  // ── BANCOS TRADICIONAIS ──
-  bb: {
-    bg: 'linear-gradient(135deg, #F0CB00 0%, #1C60A8 50%, #0D3D73 100%)',
-    text: '#fff', network: 'Visa', icon: '◈', accent: 'rgba(255,255,255,0.1)',
-  },
-  caixa: {
-    bg: 'linear-gradient(135deg, #0068B3 0%, #004E8A 45%, #EF7D00 100%)',
-    text: '#fff', network: 'Visa', icon: '◧', accent: 'rgba(255,255,255,0.1)',
-  },
-  bradesco: {
-    bg: 'linear-gradient(135deg, #CC0022 0%, #9E0018 55%, #6B0010 100%)',
-    text: '#fff', network: 'Visa', icon: '◉', accent: 'rgba(255,255,255,0.1)',
-  },
-  santander: {
-    bg: 'linear-gradient(135deg, #EC0000 0%, #CC0000 45%, #900000 100%)',
-    text: '#fff', network: 'Mastercard', icon: '◎', accent: 'rgba(255,255,255,0.1)',
-  },
-  itau: {
-    bg: 'linear-gradient(135deg, #F58220 0%, #D96A00 35%, #003087 100%)',
-    text: '#fff', network: 'Visa', icon: '◆', accent: 'rgba(255,255,255,0.1)',
-  },
-  btg: {
-    bg: 'linear-gradient(135deg, #004990 0%, #003068 50%, #001A3D 100%)',
-    text: '#C8B97A', network: 'Mastercard', icon: '◎', accent: 'rgba(200,185,122,0.1)',
-  },
-  xp: {
-    bg: 'linear-gradient(135deg, #1F1F1F 0%, #111 50%, #000 100%)',
-    text: '#C8A84B', network: 'Visa', icon: '◇', accent: 'rgba(200,168,75,0.12)',
-  },
-  original: {
-    bg: 'linear-gradient(135deg, #00985F 0%, #007548 50%, #004F30 100%)',
-    text: '#fff', network: 'Mastercard', icon: '◈', accent: 'rgba(255,255,255,0.09)',
-  },
-  safra: {
-    bg: 'linear-gradient(135deg, #00347A 0%, #001E50 55%, #000D28 100%)',
-    text: '#fff', network: 'Visa', icon: '◉', accent: 'rgba(255,255,255,0.09)',
-  },
-  bv: {
-    bg: 'linear-gradient(135deg, #0070CC 0%, #0050A0 50%, #003070 100%)',
-    text: '#fff', network: 'Mastercard', icon: '◫', accent: 'rgba(255,255,255,0.1)',
-  },
-  banrisul: {
-    bg: 'linear-gradient(135deg, #D4001A 0%, #A80014 50%, #70000D 100%)',
-    text: '#fff', network: 'Mastercard', icon: '◎', accent: 'rgba(255,255,255,0.1)',
-  },
-  brb: {
-    bg: 'linear-gradient(135deg, #0060AA 0%, #004484 50%, #002A55 100%)',
-    text: '#fff', network: 'Visa', icon: '◆', accent: 'rgba(255,255,255,0.09)',
-  },
-
-  // ── COOPERATIVAS ──
-  sicoob: {
-    bg: 'linear-gradient(135deg, #008060 0%, #006048 50%, #003D2E 100%)',
-    text: '#fff', network: 'Visa', icon: '◉', accent: 'rgba(255,255,255,0.09)',
-  },
-  sicredi: {
-    bg: 'linear-gradient(135deg, #009B3A 0%, #007A2C 50%, #00521E 100%)',
-    text: '#fff', network: 'Mastercard', icon: '◈', accent: 'rgba(255,255,255,0.09)',
-  },
-  cresol: {
-    bg: 'linear-gradient(135deg, #0075C4 0%, #0055A0 50%, #003472 100%)',
-    text: '#fff', network: 'Visa', icon: '◧', accent: 'rgba(255,255,255,0.09)',
-  },
-  unicred: {
-    bg: 'linear-gradient(135deg, #0042A0 0%, #002C78 50%, #001848 100%)',
-    text: '#fff', network: 'Mastercard', icon: '◉', accent: 'rgba(255,255,255,0.09)',
-  },
-
-  // ── INTERNACIONAL ──
-  nomad: {
-    bg: 'linear-gradient(135deg, #18122B 0%, #100C1E 50%, #080610 100%)',
-    text: '#D4AF37', network: 'Visa', icon: '✦', accent: 'rgba(212,175,55,0.12)',
-  },
-  wise: {
-    bg: 'linear-gradient(135deg, #9DE25D 0%, #7AC040 50%, #52922A 100%)',
-    text: '#1A3300', network: 'Mastercard', icon: '◎', accent: 'rgba(26,51,0,0.1)',
-  },
-  mercadopago: {
-    bg: 'linear-gradient(135deg, #009EE3 0%, #007FBF 50%, #00558A 100%)',
-    text: '#fff', network: 'Mastercard', icon: '◆', accent: 'rgba(255,255,255,0.1)',
-  },
-  avenue: {
-    bg: 'linear-gradient(135deg, #0A3E6E 0%, #062847 50%, #020F1C 100%)',
-    text: '#8BA8CC', network: 'Visa', icon: '◇', accent: 'rgba(139,168,204,0.1)',
-  },
-
-  // ── BANDEIRAS ──
-  visa: {
-    bg: 'linear-gradient(135deg, #1A1F71 0%, #0F1350 50%, #060828 100%)',
-    text: '#fff', network: 'Visa', icon: '◈', accent: 'rgba(255,255,255,0.08)',
-  },
-  mastercard: {
-    bg: 'linear-gradient(135deg, #2B2B2B 0%, #1A1A1A 50%, #0A0A0A 100%)',
-    text: '#fff', network: 'Mastercard', icon: '◎', accent: 'rgba(255,255,255,0.08)',
-  },
-  elo: {
-    bg: 'linear-gradient(135deg, #FFD700 0%, #1A1A1A 50%, #FF6B00 100%)',
-    text: '#fff', network: 'Elo', icon: '◉', accent: 'rgba(255,255,255,0.1)',
-  },
-  amex: {
-    bg: 'linear-gradient(135deg, #2E77BC 0%, #1A5A9A 50%, #0C3D73 100%)',
-    text: '#fff', network: 'Amex', icon: '◆', accent: 'rgba(255,255,255,0.1)',
-  },
-  hipercard: {
-    bg: 'linear-gradient(135deg, #B4002E 0%, #8A0022 50%, #5E0016 100%)',
-    text: '#fff', network: 'Hipercard', icon: '◫', accent: 'rgba(255,255,255,0.09)',
-  },
-  diners: {
-    bg: 'linear-gradient(135deg, #004B99 0%, #003070 50%, #001540 100%)',
-    text: '#fff', network: 'Diners', icon: '◇', accent: 'rgba(255,255,255,0.09)',
-  },
-
-  // ── OUTRO ──
-  outro: {
-    bg: 'linear-gradient(135deg, #2A3542 0%, #1A2430 50%, #0D1520 100%)',
-    text: '#C8D8E8', network: 'Cartão', icon: '◈', accent: 'rgba(200,216,232,0.08)',
-  },
+  nubank:     { bg:'linear-gradient(135deg,#7B2FBE 0%,#420E83 60%,#2B0A56 100%)', text:'#fff', network:'Mastercard', icon:'✦' },
+  inter:      { bg:'linear-gradient(135deg,#FF6B00 0%,#E05500 55%,#B03E00 100%)', text:'#fff', network:'Mastercard', icon:'◆' },
+  c6bank:     { bg:'linear-gradient(135deg,#2D2D2D 0%,#1A1A1A 50%,#0D0D0D 100%)', text:'#E8D5B0', network:'Mastercard', icon:'◎' },
+  neon:       { bg:'linear-gradient(135deg,#00C4E8 0%,#0080B8 55%,#004E87 100%)', text:'#fff', network:'Visa', icon:'⬡' },
+  picpay:     { bg:'linear-gradient(135deg,#11C76F 0%,#0A9A54 55%,#076B3A 100%)', text:'#fff', network:'Visa', icon:'◉' },
+  pagbank:    { bg:'linear-gradient(135deg,#04A54A 0%,#027A36 55%,#015225 100%)', text:'#fff', network:'Mastercard', icon:'◈' },
+  next:       { bg:'linear-gradient(135deg,#00FF7F 0%,#00CC60 40%,#009944 100%)', text:'#003820', network:'Visa', icon:'▶' },
+  willbank:   { bg:'linear-gradient(135deg,#FFD600 0%,#F0C000 45%,#C89800 100%)', text:'#1A1200', network:'Mastercard', icon:'◇' },
+  pan:        { bg:'linear-gradient(135deg,#004FAA 0%,#003480 55%,#001E55 100%)', text:'#fff', network:'Mastercard', icon:'◫' },
+  recargapay: { bg:'linear-gradient(135deg,#7B2D8B 0%,#551E63 55%,#33103C 100%)', text:'#fff', network:'Visa', icon:'⟁' },
+  ame:        { bg:'linear-gradient(135deg,#E50019 0%,#B50012 55%,#7D000C 100%)', text:'#fff', network:'Visa', icon:'◎' },
+  stone:      { bg:'linear-gradient(135deg,#00B978 0%,#009060 50%,#006844 100%)', text:'#fff', network:'Mastercard', icon:'◆' },
+  infinitepay:{ bg:'linear-gradient(135deg,#FF5200 0%,#D43E00 50%,#9E2D00 100%)', text:'#fff', network:'Mastercard', icon:'∞' },
+  infinite:   { bg:'linear-gradient(135deg,#FF5200 0%,#D43E00 50%,#9E2D00 100%)', text:'#fff', network:'Mastercard', icon:'∞' }, // alias antigo
+  bb:         { bg:'linear-gradient(135deg,#F0CB00 0%,#1C60A8 50%,#0D3D73 100%)', text:'#fff', network:'Visa', icon:'◈' },
+  caixa:      { bg:'linear-gradient(135deg,#0068B3 0%,#004E8A 45%,#EF7D00 100%)', text:'#fff', network:'Visa', icon:'◧' },
+  bradesco:   { bg:'linear-gradient(135deg,#CC0022 0%,#9E0018 55%,#6B0010 100%)', text:'#fff', network:'Visa', icon:'◉' },
+  santander:  { bg:'linear-gradient(135deg,#EC0000 0%,#CC0000 45%,#900000 100%)', text:'#fff', network:'Mastercard', icon:'◎' },
+  itau:       { bg:'linear-gradient(135deg,#F58220 0%,#D96A00 35%,#003087 100%)', text:'#fff', network:'Visa', icon:'◆' },
+  btg:        { bg:'linear-gradient(135deg,#004990 0%,#003068 50%,#001A3D 100%)', text:'#C8B97A', network:'Mastercard', icon:'◎' },
+  xp:         { bg:'linear-gradient(135deg,#1F1F1F 0%,#111 50%,#000 100%)', text:'#C8A84B', network:'Visa', icon:'◇' },
+  original:   { bg:'linear-gradient(135deg,#00985F 0%,#007548 50%,#004F30 100%)', text:'#fff', network:'Mastercard', icon:'◈' },
+  safra:      { bg:'linear-gradient(135deg,#00347A 0%,#001E50 55%,#000D28 100%)', text:'#fff', network:'Visa', icon:'◉' },
+  bv:         { bg:'linear-gradient(135deg,#0070CC 0%,#0050A0 50%,#003070 100%)', text:'#fff', network:'Mastercard', icon:'◫' },
+  banrisul:   { bg:'linear-gradient(135deg,#D4001A 0%,#A80014 50%,#70000D 100%)', text:'#fff', network:'Mastercard', icon:'◎' },
+  brb:        { bg:'linear-gradient(135deg,#0060AA 0%,#004484 50%,#002A55 100%)', text:'#fff', network:'Visa', icon:'◆' },
+  sicoob:     { bg:'linear-gradient(135deg,#008060 0%,#006048 50%,#003D2E 100%)', text:'#fff', network:'Visa', icon:'◉' },
+  sicredi:    { bg:'linear-gradient(135deg,#009B3A 0%,#007A2C 50%,#00521E 100%)', text:'#fff', network:'Mastercard', icon:'◈' },
+  cresol:     { bg:'linear-gradient(135deg,#0075C4 0%,#0055A0 50%,#003472 100%)', text:'#fff', network:'Visa', icon:'◧' },
+  unicred:    { bg:'linear-gradient(135deg,#0042A0 0%,#002C78 50%,#001848 100%)', text:'#fff', network:'Mastercard', icon:'◉' },
+  nomad:      { bg:'linear-gradient(135deg,#18122B 0%,#100C1E 50%,#080610 100%)', text:'#D4AF37', network:'Visa', icon:'✦' },
+  wise:       { bg:'linear-gradient(135deg,#9DE25D 0%,#7AC040 50%,#52922A 100%)', text:'#1A3300', network:'Mastercard', icon:'◎' },
+  mercadopago:{ bg:'linear-gradient(135deg,#009EE3 0%,#007FBF 50%,#00558A 100%)', text:'#fff', network:'Mastercard', icon:'◆' },
+  avenue:     { bg:'linear-gradient(135deg,#0A3E6E 0%,#062847 50%,#020F1C 100%)', text:'#8BA8CC', network:'Visa', icon:'◇' },
+  visa:       { bg:'linear-gradient(135deg,#1A1F71 0%,#0F1350 50%,#060828 100%)', text:'#fff', network:'Visa', icon:'◈' },
+  mastercard: { bg:'linear-gradient(135deg,#2B2B2B 0%,#1A1A1A 50%,#0A0A0A 100%)', text:'#fff', network:'Mastercard', icon:'◎' },
+  elo:        { bg:'linear-gradient(135deg,#FFD700 0%,#1A1A1A 50%,#FF6B00 100%)', text:'#fff', network:'Elo', icon:'◉' },
+  amex:       { bg:'linear-gradient(135deg,#2E77BC 0%,#1A5A9A 50%,#0C3D73 100%)', text:'#fff', network:'Amex', icon:'◆' },
+  hipercard:  { bg:'linear-gradient(135deg,#B4002E 0%,#8A0022 50%,#5E0016 100%)', text:'#fff', network:'Hipercard', icon:'◫' },
+  diners:     { bg:'linear-gradient(135deg,#004B99 0%,#003070 50%,#001540 100%)', text:'#fff', network:'Diners', icon:'◇' },
+  default:    { bg:'linear-gradient(135deg,#2A3542 0%,#1A2430 50%,#0D1520 100%)', text:'#C8D8E8', network:'Cartão', icon:'◈' },
+  outro:      { bg:'linear-gradient(135deg,#2A3542 0%,#1A2430 50%,#0D1520 100%)', text:'#C8D8E8', network:'Cartão', icon:'◈' },
 };
 
 const CARD_LABELS = {
   nubank:'Nubank', inter:'Inter', c6bank:'C6 Bank', neon:'Neon',
   picpay:'PicPay', pagbank:'PagBank', next:'Next', willbank:'Will Bank',
   pan:'Banco Pan', recargapay:'RecargaPay', ame:'Ame Digital', stone:'Stone',
-  infinitepay:'InfinitePay', bb:'Banco do Brasil', caixa:'Caixa Econômica',
-  bradesco:'Bradesco', santander:'Santander', itau:'Itaú', btg:'BTG Pactual',
-  xp:'XP Investimentos', original:'Banco Original', safra:'Banco Safra',
-  bv:'Banco BV', banrisul:'Banrisul', brb:'BRB', sicoob:'Sicoob',
-  sicredi:'Sicredi', cresol:'Cresol', unicred:'Unicred', nomad:'Nomad',
-  wise:'Wise', mercadopago:'Mercado Pago', avenue:'Avenue', visa:'Visa',
+  infinitepay:'InfinitePay', infinite:'InfinitePay',
+  bb:'Banco do Brasil', caixa:'Caixa Econômica', bradesco:'Bradesco',
+  santander:'Santander', itau:'Itaú', btg:'BTG Pactual', xp:'XP Investimentos',
+  original:'Banco Original', safra:'Banco Safra', bv:'Banco BV',
+  banrisul:'Banrisul', brb:'BRB', sicoob:'Sicoob', sicredi:'Sicredi',
+  cresol:'Cresol', unicred:'Unicred', nomad:'Nomad', wise:'Wise',
+  mercadopago:'Mercado Pago', avenue:'Avenue', visa:'Visa',
   mastercard:'Mastercard', elo:'Elo', amex:'American Express',
-  hipercard:'Hipercard', diners:'Diners Club', outro:'Outro Banco',
+  hipercard:'Hipercard', diners:'Diners Club', default:'Cartão', outro:'Outro Banco',
 };
 
-// ─── STORAGE ────────────────────────────────────────────────────────────────
-function getCartoes()    { return window._cartoes || []; }
-function salvarCartoes(c){ window._cartoes = c; _tabRendered.cartoes = false; window._salvarCartoesFirebase && window._salvarCartoesFirebase(c); }
-function getCompras()    { return window._compras || []; }
-function salvarCompras(c){ window._compras = c; window._salvarComprasFirebase && window._salvarComprasFirebase(c); }
+// ── CHAVE DE TEMA: resolve tanto novo (banco) quanto antigo (bandeira) ─────
+function resolveThemeKey(c) {
+  // Novo formato: c.banco ("nubank", "sicoob", etc.)
+  if (c.banco && CARD_THEMES[c.banco]) return c.banco;
+  // Antigo formato: c.bandeira (mesmo mapeamento de slugs)
+  if (c.bandeira && CARD_THEMES[c.bandeira]) return c.bandeira;
+  // Tenta inferir pelo nome do cartão
+  if (c.nome) {
+    const n = c.nome.toLowerCase();
+    for (const key of Object.keys(CARD_THEMES)) {
+      if (n.includes(key) || (CARD_LABELS[key] && n.includes(CARD_LABELS[key].toLowerCase()))) return key;
+    }
+  }
+  return 'outro';
+}
 
-// ─── PARCELAS ────────────────────────────────────────────────────────────────
+// ── NOME DE EXIBIÇÃO: resolve novo e antigo ─────────────────────────────────
+function resolveCardLabel(c) {
+  if (c.apelido) return c.apelido;
+  if (c.banco) return CARD_LABELS[c.banco] || c.nome || 'Cartão';
+  return c.nome || CARD_LABELS[c.bandeira] || 'Cartão';
+}
+
+// ── STORAGE ─────────────────────────────────────────────────────────────────
+function getCartoes()    { return window._cartoes || []; }
+function salvarCartoes(c){ window._cartoes=c; _tabRendered.cartoes=false; window._salvarCartoesFirebase&&window._salvarCartoesFirebase(c); }
+function getCompras()    { return window._compras || []; }
+function salvarCompras(c){ window._compras=c; window._salvarComprasFirebase&&window._salvarComprasFirebase(c); }
+
+// ── PARCELAS ─────────────────────────────────────────────────────────────────
 function getInstallmentTransactionsForMonth(year, month) {
   const result = [];
   getCompras().forEach(compra => {
     if (compra.parcelasTotal <= 1) return;
-    const dataCompra = new Date(compra.data);
-    let diff = (year - dataCompra.getFullYear()) * 12 + (month - dataCompra.getMonth());
+    const dc = new Date(compra.data);
+    let diff = (year-dc.getFullYear())*12 + (month-dc.getMonth());
     if (diff < 0) return;
     const num = diff + 1;
     if (num > compra.parcelasTotal) return;
-    const val = Math.round((compra.valor / compra.parcelasTotal) * 100) / 100;
-    let d = new Date(dataCompra); d.setFullYear(year); d.setMonth(month);
-    if (d.getDate() !== dataCompra.getDate()) d.setDate(0);
+    const val = Math.round((compra.valor/compra.parcelasTotal)*100)/100;
+    let d = new Date(dc); d.setFullYear(year); d.setMonth(month);
+    if (d.getDate()!==dc.getDate()) d.setDate(0);
     result.push({ id:`parcela_${compra.id}_${num}`, desc:`${compra.desc} (${num}/${compra.parcelasTotal})`,
       valor:val, cat:compra.categoria, data:d.toISOString().split('T')[0],
       tipo:'despesa', isGenerated:true, origemId:compra.id });
@@ -3468,12 +3191,12 @@ function getInstallmentTransactionsForMonth(year, month) {
   return result;
 }
 
-// ─── ASSINATURAS ────────────────────────────────────────────────────────────
+// ── ASSINATURAS ──────────────────────────────────────────────────────────────
 function getSubscriptionTransactionsForMonth(year, month) {
   const result = [];
   carregarMensalidades().forEach(sub => {
-    let d = new Date(year, month, sub.dia || 1);
-    if (d.getMonth() !== month) d = new Date(year, month + 1, 0);
+    let d = new Date(year, month, sub.dia||1);
+    if (d.getMonth()!==month) d = new Date(year, month+1, 0);
     result.push({ id:`subsc_${sub.id}_${year}_${month}`, desc:sub.nome, valor:sub.val,
       cat:'Assinaturas/Mensalidades', data:d.toISOString().split('T')[0],
       tipo:'despesa', isGenerated:true, origemId:sub.id });
@@ -3481,136 +3204,132 @@ function getSubscriptionTransactionsForMonth(year, month) {
   return result;
 }
 
-// ─── ADICIONAR CARTÃO ────────────────────────────────────────────────────────
+// ── ADICIONAR CARTÃO ─────────────────────────────────────────────────────────
 function adicionarCartao() {
   const banco   = document.getElementById('novo-cartao-banco').value;
   const apelido = document.getElementById('novo-cartao-apelido').value.trim();
-  if (!banco) { toastMsg('Selecione um banco ou cartão!', 'erro'); return; }
+  if (!banco) { toastMsg('Selecione um banco ou cartão!','erro'); return; }
   const cartoes = getCartoes();
-  cartoes.push({ id: Date.now(), banco, nome: apelido || CARD_LABELS[banco] || 'Cartão', apelido });
+  cartoes.push({ id:Date.now(), banco, nome:CARD_LABELS[banco]||'Cartão', apelido });
   salvarCartoes(cartoes);
-  document.getElementById('novo-cartao-banco').value = '';
-  document.getElementById('novo-cartao-apelido').value = '';
+  document.getElementById('novo-cartao-banco').value='';
+  document.getElementById('novo-cartao-apelido').value='';
   renderizarCartoes();
   atualizarSelectCartoes();
   toastMsg('💳 Cartão adicionado!');
 }
 
-// ─── REMOVER CARTÃO ──────────────────────────────────────────────────────────
+// ── REMOVER CARTÃO ───────────────────────────────────────────────────────────
 function removerCartao(id) {
-  salvarCartoes(getCartoes().filter(c => c.id !== id));
-  salvarCompras(getCompras().filter(c => c.cartaoId !== id));
+  salvarCartoes(getCartoes().filter(c=>c.id!==id));
+  salvarCompras(getCompras().filter(c=>c.cartaoId!==id));
   renderizarCartoes();
   atualizarSelectCartoes();
   renderizarCompras();
   toastMsg('Cartão removido');
 }
 
-// ─── RENDERIZAR CARTÕES ──────────────────────────────────────────────────────
+// ── RENDERIZAR CARTÕES (retrocompat com dados antigos) ───────────────────────
 function renderizarCartoes() {
   const el = document.getElementById('cards-container');
   if (!el) return;
   const cartoes = getCartoes();
   if (!cartoes.length) {
-    el.innerHTML = `<div class="cards-empty">
-      <span class="ce-icon">💳</span>
-      Nenhum cartão cadastrado ainda.<br>
-      <span style="opacity:.65;font-size:.82rem;">Selecione uma instituição acima para começar.</span>
-    </div>`;
+    el.innerHTML=`<div class="cards-empty"><span class="ce-icon">💳</span>Nenhum cartão cadastrado ainda.<br><span style="opacity:.65;font-size:.82rem;">Selecione uma instituição acima para começar.</span></div>`;
     return;
   }
-  const userName = ((window._currentUser?.displayName || '').toUpperCase()) || 'SEU NOME';
+  const userName = ((window._currentUser?.displayName||'').toUpperCase())||'SEU NOME';
   el.innerHTML = cartoes.map(c => {
-    const t = CARD_THEMES[c.banco] || CARD_THEMES.outro;
-    const label = CARD_LABELS[c.banco] || 'Cartão';
-    const apelido = c.apelido ? `<div class="c-apelido">${c.apelido}</div>` : '';
+    const key   = resolveThemeKey(c);
+    const t     = CARD_THEMES[key] || CARD_THEMES.outro;
+    const label = resolveCardLabel(c);
+    const apelidoEl = c.apelido ? `<div class="mc-apelido" style="color:${t.text};">${c.apelido}</div>` : '';
     return `
-    <div class="mirai-card" style="background:${t.bg}; color:${t.text}; box-shadow: 0 8px 28px rgba(0,0,0,0.3);">
-      <div class="c-deco1" style="background:${t.accent};"></div>
-      <div class="c-deco2" style="background:${t.accent};"></div>
-      <div class="c-shine"></div>
-      <button class="c-remove" onclick="removerCartao(${c.id})" title="Remover">✕</button>
-      <div class="c-top">
+    <div class="mirai-card" style="background:${t.bg};color:${t.text};box-shadow:0 8px 28px rgba(0,0,0,.3);">
+      <div class="mc-deco1"></div>
+      <div class="mc-deco2"></div>
+      <div class="mc-shine"></div>
+      <button class="mc-remove" onclick="removerCartao(${c.id})" title="Remover">✕</button>
+      <div class="mc-top">
         <div>
-          <div class="c-bank-name" style="color:${t.text};">${label}</div>
-          ${apelido}
+          <div class="mc-bank" style="color:${t.text};">${label}</div>
+          ${apelidoEl}
         </div>
-        <div class="c-chip"></div>
+        <div class="mc-chip"></div>
       </div>
-      <div class="c-bottom">
-        <div class="c-holder-wrap">
-          <div class="c-holder" style="color:${t.text};">${userName}</div>
-          <div class="c-network" style="color:${t.text};">${t.network}</div>
+      <div class="mc-bottom">
+        <div>
+          <div class="mc-holder" style="color:${t.text};">${userName}</div>
+          <div class="mc-network" style="color:${t.text};">${t.network}</div>
         </div>
-        <div class="c-brand-icon" style="color:${t.text};">${t.icon}</div>
+        <div class="mc-icon" style="color:${t.text};">${t.icon}</div>
       </div>
     </div>`;
   }).join('');
 }
 
-// ─── SELECT DE CARTÕES ───────────────────────────────────────────────────────
+// ── SELECT DE CARTÕES ────────────────────────────────────────────────────────
 function atualizarSelectCartoes() {
   const sel = document.getElementById('compra-cartao');
   if (!sel) return;
   sel.innerHTML = '<option value="">Selecione um cartão</option>';
   getCartoes().forEach(c => {
-    const lbl = c.apelido || CARD_LABELS[c.banco] || c.nome || 'Cartão';
-    sel.innerHTML += `<option value="${c.id}">${lbl}</option>`;
+    sel.innerHTML += `<option value="${c.id}">${resolveCardLabel(c)}</option>`;
   });
 }
 
-// ─── ADICIONAR COMPRA ────────────────────────────────────────────────────────
+// ── ADICIONAR COMPRA ─────────────────────────────────────────────────────────
 function adicionarCompra() {
   const cartaoId  = parseInt(document.getElementById('compra-cartao').value);
   const data      = document.getElementById('compra-data').value;
   const desc      = document.getElementById('compra-desc').value.trim();
   const valor     = parseFloat(document.getElementById('compra-valor').value);
   const categoria = document.getElementById('compra-cat').value;
-  const parcelasTotal = parseInt(document.getElementById('compra-parcelas-total').value) || 1;
-  const parcelaAtual  = parseInt(document.getElementById('compra-parcelas-atual').value) || 1;
-  if (!cartaoId) { toastMsg('Selecione um cartão', 'erro'); return; }
-  if (!data || !desc || !valor || valor <= 0) { toastMsg('Preencha todos os campos', 'erro'); return; }
+  const parcelasTotal = parseInt(document.getElementById('compra-parcelas-total').value)||1;
+  const parcelaAtual  = parseInt(document.getElementById('compra-parcelas-atual').value)||1;
+  if (!cartaoId) { toastMsg('Selecione um cartão','erro'); return; }
+  if (!data||!desc||!valor||valor<=0) { toastMsg('Preencha todos os campos','erro'); return; }
   const compras = getCompras();
-  compras.push({ id: Date.now(), cartaoId, data, desc, valor, categoria, parcelasTotal, parcelaAtual });
+  compras.push({ id:Date.now(), cartaoId, data, desc, valor, categoria, parcelasTotal, parcelaAtual });
   salvarCompras(compras);
-  ['compra-data','compra-desc','compra-valor','compra-parcelas-total','compra-parcelas-atual'].forEach(id => { document.getElementById(id).value = ''; });
+  ['compra-data','compra-desc','compra-valor','compra-parcelas-total','compra-parcelas-atual'].forEach(id=>{ document.getElementById(id).value=''; });
   renderizarCompras();
   toastMsg('Compra registrada!');
 }
 
-// ─── REMOVER COMPRA ──────────────────────────────────────────────────────────
+// ── REMOVER COMPRA ───────────────────────────────────────────────────────────
 function removerCompra(id) {
-  salvarCompras(getCompras().filter(c => c.id !== id));
+  salvarCompras(getCompras().filter(c=>c.id!==id));
   renderizarCompras();
   toastMsg('Compra removida');
 }
 
-// ─── COMPRAS DO MÊS ──────────────────────────────────────────────────────────
+// ── COMPRAS DO MÊS ───────────────────────────────────────────────────────────
 function getComprasVisiveisNoMes(year, month) {
   return getCompras().filter(c => {
-    const [y, m] = c.data.split('-');
-    return parseInt(y) === year && parseInt(m) - 1 === month;
+    const [y,m] = c.data.split('-');
+    return parseInt(y)===year && parseInt(m)-1===month;
   });
 }
 
-// ─── RENDERIZAR COMPRAS ──────────────────────────────────────────────────────
+// ── RENDERIZAR COMPRAS (retrocompat: nomes de cartões antigos) ───────────────
 function renderizarCompras() {
   const el = document.getElementById('compras-container');
   if (!el) return;
-  const cartaoMap = Object.fromEntries(getCartoes().map(c => [c.id, c.apelido || CARD_LABELS[c.banco] || c.nome || 'Cartão']));
+  const cartaoMap = Object.fromEntries(getCartoes().map(c => [c.id, resolveCardLabel(c)]));
   const comprasMes = getComprasVisiveisNoMes(currentYear, currentMonth);
   const grupos = {};
-  comprasMes.forEach(c => { (grupos[c.cartaoId] = grupos[c.cartaoId] || []).push(c); });
+  comprasMes.forEach(c => { (grupos[c.cartaoId]=grupos[c.cartaoId]||[]).push(c); });
   if (!Object.keys(grupos).length) {
-    el.innerHTML = '<div class="empty-state"><span class="emoji">🛍️</span>Nenhuma compra neste mês.</div>';
+    el.innerHTML='<div class="empty-state"><span class="emoji">🛍️</span>Nenhuma compra neste mês.</div>';
     return;
   }
-  el.innerHTML = Object.entries(grupos).map(([id, list]) => {
-    const nome = cartaoMap[id] || 'Desconhecido';
-    const total = list.reduce((a, c) => a + c.valor, 0);
+  el.innerHTML = Object.entries(grupos).map(([id,list]) => {
+    const nome  = cartaoMap[id]||'Desconhecido';
+    const total = list.reduce((a,c)=>a+c.valor,0);
     const items = list.map(c => {
-      const parcela = c.parcelasTotal > 1 ? ` (${c.parcelaAtual}/${c.parcelasTotal})` : '';
-      const dt = new Date(c.data + 'T12:00').toLocaleDateString('pt-BR');
+      const parcela = c.parcelasTotal>1?` (${c.parcelaAtual}/${c.parcelasTotal})`:'';
+      const dt = new Date(c.data+'T12:00').toLocaleDateString('pt-BR');
       return `<div class="compra-item">
         <div class="compra-icon">🛒</div>
         <div class="compra-info">
