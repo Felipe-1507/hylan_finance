@@ -2335,6 +2335,8 @@ input:focus, select:focus, textarea:focus {
       <button class="nav-tab active" data-tab="resumo">Resumo</button>
       <button class="nav-tab" data-tab="cartoes">Cartões</button>
       <button class="nav-tab" data-tab="metas">Metas</button>
+      <button class="nav-tab" data-tab="invest">Invest.</button>
+      <button class="nav-tab" data-tab="relatorios">Relatórios</button>
       <button class="nav-tab" data-tab="perfil">Perfil</button>
     </div>
     <div class="month-nav month-nav-desktop">
@@ -5061,8 +5063,7 @@ function renderExecutivo(receitas, despesas, saldo, investido, cartao, topCat, i
     saldo >= 0
       ? `💡 Parabéns! Você terminou o período no positivo.`
       : `💡 Atenção: o período terminou com saldo negativo. Revise os maiores gastos.`,
-  ].join('
-');
+  ].join('\n');
 }
 
 // ── Exportar CSV ──────────────────────────────────────────────────────────
@@ -5073,10 +5074,8 @@ function exportarRelatorioCSV() {
   });
   if (!txs.length) { toastMsg('Nenhuma transação no período', 'erro'); return; }
 
-  const header = 'Data,Descrição,Tipo,Categoria,Valor
-';
-  const rows   = txs.map(t => `${t.data},"${t.desc}",${t.tipo},"${t.cat}",${t.valor.toFixed(2).replace('.',',')}`).join('
-');
+  const header = 'Data,Descrição,Tipo,Categoria,Valor\n';
+  const rows   = txs.map(t => `${t.data},"${t.desc}",${t.tipo},"${t.cat}",${t.valor.toFixed(2).replace('.',',')}`).join('\n');
   const blob   = new Blob(['﻿' + header + rows], { type: 'text/csv;charset=utf-8;' });
   const url    = URL.createObjectURL(blob);
   const a      = document.createElement('a');
